@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import AddedForm from "../Home/Form";
 import AdmissionForm from "./AdmissionForm";
 
 const Modal = ({ isOpen, onClose, college }) => {
   return (
     <>
-      {/* Overlay */}
       {isOpen && <div className="fixed inset-0 bg-black opacity-50 z-40"></div>}
 
       {/* Modal */}

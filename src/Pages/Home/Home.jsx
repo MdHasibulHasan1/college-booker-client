@@ -6,7 +6,7 @@ import CollegeCardSection from "./CollegeCardSection/CollegeCardSection";
 
 import AddedForm from "./Form";
 import ReviewSection from "./ReviewSection/ReviewSection";
-import SearchField from "./Search/SearchField";
+import CollegeSearch from "./Search/CollegeSearch";
 
 const Home = () => {
   const [colleges, collegesRefetch] = useColleges();
@@ -15,8 +15,8 @@ const Home = () => {
       <Helmet>
         <title>App Name | Home</title>
       </Helmet>
+      <CollegeSearch />
 
-      <SearchField />
       <CollegeCardSection colleges={colleges} />
       <ReviewSection />
 

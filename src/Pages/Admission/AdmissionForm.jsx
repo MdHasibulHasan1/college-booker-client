@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
@@ -11,13 +11,16 @@ const AdmissionForm = ({ college }) => {
     formState: { errors },
   } = useForm();
   const { user } = useAuth();
+  const found = college?.candidate?.find(
+    (cand) => cand.candidateEmail === user?.email
+  );
+  console.log("............", found, college);
   const [phoneNumber, setPhoneNumber] = useState("");
   const handlePhoneChange = (value) => {
     setPhoneNumber(value);
   };
 
   const onSubmit = (data) => {
-    console.log(college);
     data.phoneNumber = phoneNumber;
     console.log(data);
     // candidates
@@ -27,7 +30,7 @@ const AdmissionForm = ({ college }) => {
           data,
         })
         .then((response) => {
-          console.log(response);
+          console.log(response.data);
           Swal.fire({
             icon: "success",
             title: "Success",
@@ -150,14 +153,23 @@ const AdmissionForm = ({ college }) => {
             )}
           </div>
         </div>
-        {/* Add image field using "input type='file'" here */}
+        <div className="form-control w-full mt-4">
+          <label className="block font-medium">Image</label>
+          <input
+            required
+            type="url"
+            {...register("image", { required: true })}
+            className="border border-gray-800 p-1 mt-1 block w-full"
+          />
+        </div>
 
         <div>
           <button
+            disabled={found}
             type="submit"
             className="bg-blue-500 block w-full text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-600"
           >
-            Submit
+            {found ? "already booked" : "Submit"}
           </button>
         </div>
       </form>

@@ -6,7 +6,6 @@ import Colleges from "../Pages/Colleges/Colleges";
 import Details from "../Pages/Home/CollegeCardSection/Details";
 import Home from "../Pages/Home/Home";
 import ShopBySearch from "../Pages/Home/Search/ShopBySearch";
-
 import Login from "../Pages/Login";
 import MyColleges from "../Pages/MyColleges/MyColleges";
 import SignUp from "../Pages/SignUp/SignUp";

@@ -16,28 +16,32 @@ const UserProfile = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [gender, setGender] = useState("");
+  const [email, setEmail] = useState("");
+  const [university, setUniversity] = useState("");
   const [loading, setLoading] = useState(false);
+
   const handlePhoneChange = (value) => {
     setPhoneNumber(value);
   };
-
+  console.log("................", userData);
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-
+    console.log(userData);
     try {
       const response = await axios.post(
-        `https://smart-store-server.vercel.app/profile/update/${user.email}`,
+        `http://localhost:5000/profile/update/${userData?._id}`,
         {
           name,
           photoURL,
           phoneNumber,
           address,
-          email: user?.email,
+          email,
           gender,
+          university,
         }
       );
-
+      console.log(university);
       if (response.data.acknowledged) {
         updateUserProfile(name, photoURL);
         refetchUser();
@@ -55,6 +59,8 @@ const UserProfile = () => {
       setPhoneNumber("");
       setAddress("");
       setGender("");
+      setEmail("");
+      setUniversity("");
     } catch (error) {
       console.error(error);
     }
@@ -74,6 +80,10 @@ const UserProfile = () => {
         <div>
           <p className="text-gray-600 mb-2">
             <span className="font-semibold">Email:</span> {userData?.email}
+          </p>
+          <p className="text-gray-600 mb-2">
+            <span className="font-semibold">University:</span>{" "}
+            {userData?.university}
           </p>
           <p className="text-gray-600 mb-2">
             <span className="font-semibold">Address:</span> {userData?.address}
@@ -159,6 +169,42 @@ const UserProfile = () => {
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-semibold"
+            >
+              Email:
+            </label>
+            <input
+              required
+              type="email"
+              id="email"
+              name="email"
+              readOnly
+              value={userData?.email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-input p-2 mt-1 block w-full border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 hover:border-blue-500 hover:ring-blue-500"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="university"
+              className="block text-gray-700 font-semibold"
+            >
+              University:
+            </label>
+            <input
+              type="text"
+              id="university"
+              name="university"
+              value={university}
+              onChange={(e) => setUniversity(e.target.value)}
+              className="form-input p-2 mt-1 block w-full border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 hover:border-blue-500 hover:ring-blue-500"
+            />
           </div>
         </div>
         <div className="mb-4">

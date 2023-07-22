@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useColleges from "../../../hooks/useColleges";
 import CollegeCard from "./CollegeCard";
-import SearchField from "./SearchField";
+import CollegeSearch from "./CollegeSearch";
 
 const ShopBySearch = () => {
   const { searchQuery } = useParams();
@@ -22,7 +22,7 @@ const ShopBySearch = () => {
 
   return (
     <>
-      <SearchField />
+      <CollegeSearch />
       <div className="md:flex justify-between items-center mt-4">
         <h1 className="text-2xl font-bold">
           {searchedColleges?.length} items found for "{searchQuery}"

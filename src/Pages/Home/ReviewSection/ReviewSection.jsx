@@ -33,15 +33,22 @@ const ReviewSection = () => {
             {/* Add more college details as needed */}
             <hr className="my-4" />
             <h3 className="text-lg font-semibold mb-2">Reviews</h3>
-            {college?.reviews?.map((review, index) => (
-              <div key={index} className="mb-2">
-                <p className="text-gray-600">{review.comment}</p>
-                <div className="flex items-center mt-1">
-                  <span className="mr-2">Rating:</span>
-                  <span>{review.rating}</span>
+            <div className="flex flex-wrap gap-2 justify-between">
+              {college?.reviews?.map((review, index) => (
+                <div key={index} className="mb-2">
+                  <img
+                    className="w-8 h-8 rounded-full"
+                    src={review?.photoURL}
+                    alt=""
+                  />
+                  <p className="text-gray-600">{review.comment}</p>
+                  <div className="flex items-center mt-1">
+                    <span className="mr-2">Rating:</span>
+                    <span>{review.rating}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         ))}
       </div>
