@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useColleges from "../../hooks/useColleges";
 import AdmissionForm from "./AdmissionForm";
+import Modal from "./Modal";
 
 const Admission = () => {
   const [selectedCollege, setSelectedCollege] = useState(null);
   const [colleges, collegesRefetch] = useColleges();
 
-  const handleCollegeClick = (college) => {
-    setSelectedCollege(college);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = (college) => {
+    setSelectedCollege(college); // Set the selected college before opening the modal
+    setIsModalOpen(true);
   };
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // Submit the form data to your backend or perform any other actions
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -24,30 +27,21 @@ const Admission = () => {
           <div
             key={college._id}
             className="bg-white rounded-lg shadow p-4 cursor-pointer"
-            onClick={() => handleCollegeClick(college)}
+            onClick={() => handleOpenModal(college)} // Pass the college to the handleOpenModal function
           >
-            <h2 className="text-lg font-bold">{college.name}</h2>
-            {selectedCollege && (
-              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                  <h2 className="text-lg font-bold mb-4">
-                    Admission Form for {selectedCollege.name}
-                  </h2>
-                  <AdmissionForm college={college} />
-                  <button
-                    onClick={() => setSelectedCollege(null)}
-                    className="text-gray-500 mt-4 hover:text-gray-700"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            )}
+            <button className="text-lg font-bold">{college.name}</button>
           </div>
         ))}
       </div>
 
       {/* Admission Modal */}
+      {selectedCollege && ( // Render the modal only if a college is selected
+        <Modal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          college={selectedCollege} // Pass the selected college as a prop to the Modal component
+        />
+      )}
     </div>
   );
 };

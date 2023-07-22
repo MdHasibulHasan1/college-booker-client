@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const CollegeCard = ({ college }) => {
   return (
     <div className="border border-gray-300 p-4 rounded-md shadow-md">
@@ -16,9 +18,12 @@ const CollegeCard = ({ college }) => {
         Research History: {college.researchHistory.join(", ")}
       </p>
       <p className="mb-2">Sports: {college.sports.join(", ")}</p>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
-        Details
-      </button>
+
+      <Link to={`/details/${college._id}`} key={college._id} className="">
+        <button className="bg-blue-500 block w-full text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-600">
+          Details
+        </button>
+      </Link>
     </div>
   );
 };

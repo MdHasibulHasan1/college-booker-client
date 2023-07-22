@@ -3,12 +3,12 @@ import MainLayout from "../Layouts/MainLayout";
 import Admission from "../Pages/Admission/Admission";
 import CollegeDetails from "../Pages/Colleges/CollegeDetails";
 import Colleges from "../Pages/Colleges/Colleges";
-
+import Details from "../Pages/Home/CollegeCardSection/Details";
 import Home from "../Pages/Home/Home";
 import ShopBySearch from "../Pages/Home/Search/ShopBySearch";
+
 import Login from "../Pages/Login";
 import MyColleges from "../Pages/MyColleges/MyColleges";
-
 import SignUp from "../Pages/SignUp/SignUp";
 import UserProfile from "../Pages/UserProfile";
 
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/signUp",
-        element: <SignUp></SignUp>,
+        element: <SignUp />,
       },
       {
         path: "/colleges",
@@ -36,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/colleges/:Id",
         element: <CollegeDetails />,
+      },
+      {
+        path: "/details/:Id",
+        element: <Details />,
       },
       {
         path: "/admission",

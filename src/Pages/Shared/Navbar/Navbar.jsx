@@ -75,6 +75,31 @@ const Navbar = () => {
                 My College
               </NavLink>
             </li>
+            <li>
+              {user ? (
+                <NavLink
+                  to="/login"
+                  aria-label="Login"
+                  title="Login"
+                  className={({ isActive }) =>
+                    isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                  }
+                >
+                  Login
+                </NavLink>
+              ) : (
+                <NavLink
+                  to="/signUp"
+                  aria-label="Sign Up"
+                  title="Sign Up"
+                  className={({ isActive }) =>
+                    isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                  }
+                >
+                  Sign Up
+                </NavLink>
+              )}
+            </li>
           </ul>
         </div>
         {user && (

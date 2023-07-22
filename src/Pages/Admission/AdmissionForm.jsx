@@ -15,16 +15,19 @@ const AdmissionForm = ({ college }) => {
   const handlePhoneChange = (value) => {
     setPhoneNumber(value);
   };
+
   const onSubmit = (data) => {
+    console.log(college);
     data.phoneNumber = phoneNumber;
     console.log(data);
     // candidates
-    if (user && data) {
+    if (user && data && college) {
       axios
-        .post(`http://localhost:5000/candidates/${college._id}`, {
+        .post(`http://localhost:5000/candidates/${college?._id}`, {
           data,
         })
         .then((response) => {
+          console.log(response);
           Swal.fire({
             icon: "success",
             title: "Success",
@@ -33,6 +36,7 @@ const AdmissionForm = ({ college }) => {
           });
         })
         .catch((error) => {
+          console.log(error);
           Swal.fire({
             icon: "error",
             title: "Error",

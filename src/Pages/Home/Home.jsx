@@ -5,6 +5,7 @@ import Login from "../Login";
 import CollegeCardSection from "./CollegeCardSection/CollegeCardSection";
 
 import AddedForm from "./Form";
+import ReviewSection from "./ReviewSection/ReviewSection";
 import SearchField from "./Search/SearchField";
 
 const Home = () => {
@@ -17,7 +18,8 @@ const Home = () => {
 
       <SearchField />
       <CollegeCardSection colleges={colleges} />
-      <Login></Login>
+      <ReviewSection />
+
       <AddedForm />
     </div>
   );
