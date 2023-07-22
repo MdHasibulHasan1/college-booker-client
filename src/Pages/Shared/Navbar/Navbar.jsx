@@ -17,7 +17,7 @@ const Navbar = () => {
       .catch((error) => console.error(error));
   };
   return (
-    <div className="bg-white px-4 mx-auto  fixed z-50 w-full">
+    <div className="bg-white px-4 mx-auto  fixed z-30 w-full">
       <div className="relative py-2 flex items-center justify-between">
         <a href="#">
           <span className="ml-2 text-2xl font-bold tracking-wide ">

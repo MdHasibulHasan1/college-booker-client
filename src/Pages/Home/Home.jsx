@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Form } from "react-hook-form";
+import Login from "../Login";
+
 import AddedForm from "./Form";
 
 const Home = () => {
@@ -8,6 +10,7 @@ const Home = () => {
       <Helmet>
         <title>App Name | Home</title>
       </Helmet>
+      <Login></Login>
       <AddedForm />
     </div>
   );
