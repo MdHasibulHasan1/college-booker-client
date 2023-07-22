@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 import "./Navbar.css";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { user, logOut } = useAuth();
   const navigate = useNavigate();
 
   // Handle logout functionality
@@ -19,62 +20,90 @@ const Navbar = () => {
   return (
     <div className="bg-white px-4 mx-auto  fixed z-30 w-full">
       <div className="relative py-2 flex items-center justify-between">
-        <a href="#">
-          <span className="ml-2 text-2xl font-bold tracking-wide ">
-            CollegeBooker
-          </span>
-        </a>
-        <ul className="items-center hidden space-x-8 lg:flex">
-          {/* Navigation links */}
-          <li tabIndex={0}>
-            <NavLink
-              to="/"
-              aria-label="Home"
-              title="Home"
-              className={({ isActive }) =>
-                isActive ? "text-[#3a85eb]" : "text-[#666666]"
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/colleges"
-              aria-label="Colleges"
-              title="Colleges"
-              className={({ isActive }) =>
-                isActive ? "text-[#3a85eb]" : "text-[#666666]"
-              }
-            >
-              Colleges
-            </NavLink>
-          </li>
+        <div className="grid grid-cols-2 justify-between items-center">
+          <div>
+            <span className="ml-2 text-2xl font-bold tracking-wide ">
+              CollegeBooker
+            </span>
+          </div>
+          <ul className="items-center hidden space-x-8 flex-grow lg:flex">
+            {/* Navigation links */}
+            <li tabIndex={0}>
+              <NavLink
+                to="/"
+                aria-label="Home"
+                title="Home"
+                className={({ isActive }) =>
+                  isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/colleges"
+                aria-label="Colleges"
+                title="Colleges"
+                className={({ isActive }) =>
+                  isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                }
+              >
+                Colleges
+              </NavLink>
+            </li>
 
-          <NavLink
-            to="/admission"
-            aria-label="Admission"
-            title="Admission"
-            className={({ isActive }) =>
-              isActive ? "text-[#3a85eb]" : "text-[#666666]"
-            }
-          >
-            Admission
-          </NavLink>
-          <li>
             <NavLink
-              to="/my-college"
-              aria-label="My College"
-              title="My College"
+              to="/admission"
+              aria-label="Admission"
+              title="Admission"
               className={({ isActive }) =>
                 isActive ? "text-[#3a85eb]" : "text-[#666666]"
               }
             >
-              My College
+              Admission
             </NavLink>
-          </li>
-        </ul>
-        <div></div>
+            <li>
+              <NavLink
+                to="/my-college"
+                aria-label="My College"
+                title="My College"
+                className={({ isActive }) =>
+                  isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                }
+              >
+                My College
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+        {user && (
+          <div className="dropdown dropdown-end ml-auto">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img
+                  className="ring ring-blue-300 md:ring-blue-500 rounded-full block w-8"
+                  src={user?.photoURL}
+                  alt="not found"
+                />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link className="justify-between" to="/profile">
+                  Profile
+                </Link>
+              </li>
+
+              <li>
+                <a onClick={handleLogout}>Logout</a>
+              </li>
+            </ul>
+          </div>
+        )}
         <div className="lg:hidden">
           <button
             aria-label="Open Menu"

@@ -1,15 +1,52 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-
-const AdmissionForm = () => {
+import PhoneInput from "react-phone-number-input";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+const AdmissionForm = ({ college }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const { user } = useAuth();
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const handlePhoneChange = (value) => {
+    setPhoneNumber(value);
+  };
   const onSubmit = (data) => {
-    console.log(data); // You can handle form submission logic here
+    data.phoneNumber = phoneNumber;
+    console.log(data);
+    // candidates
+    if (user && data) {
+      axios
+        .post(`http://localhost:5000/candidates/${college._id}`, {
+          data,
+        })
+        .then((response) => {
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Your are now candidate of this college!",
+            confirmButtonText: "OK",
+          });
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Failed to submit.",
+            confirmButtonText: "OK",
+          });
+        });
+    } else {
+      Swal.fire({
+        title: "Please Login fast to submit",
+        icon: "warning",
+        confirmButtonText: "OK",
+      });
+    }
   };
 
   return (
@@ -50,6 +87,8 @@ const AdmissionForm = () => {
             <input
               type="email"
               id="candidateEmail"
+              value={user?.email}
+              readOnly
               {...register("candidateEmail", {
                 required: "Candidate email is required",
                 pattern: {
@@ -68,23 +107,15 @@ const AdmissionForm = () => {
             <label htmlFor="candidatePhoneNumber">
               Candidate Phone Number:
             </label>
-            <input
-              type="tel"
-              id="candidatePhoneNumber"
-              {...register("candidatePhoneNumber", {
-                required: "Candidate phone number is required",
-                pattern: {
-                  value: /^\d{10}$/i,
-                  message: "Invalid phone number format (e.g., 1234567890)",
-                },
-              })}
-              className="border border-gray-800 p-1 mt-1 block w-full"
+
+            <PhoneInput
+              value={phoneNumber}
+              defaultCountry="BD"
+              required
+              onChange={handlePhoneChange}
+              placeholder="Phone Number"
+              className=" p-2 mt-1 block w-full border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 hover:border-blue-500 hover:ring-blue-500"
             />
-            {errors.candidatePhoneNumber && (
-              <p className="text-red-500">
-                {errors.candidatePhoneNumber.message}
-              </p>
-            )}
           </div>
 
           <div>
