@@ -10,7 +10,7 @@ const useUserData = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/profile/update/${user?.email}`
+        `https://college-booker.vercel.app/profile/update/${user?.email}`
       );
       return res.data;
     },

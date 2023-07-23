@@ -3,11 +3,13 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { AiFillStar } from "react-icons/ai";
+import useColleges from "../../hooks/useColleges";
 
 const ReviewForm = ({ college }) => {
   const [rating, setRating] = useState(0);
   const { user } = useAuth();
   const [comment, setComment] = useState("");
+  const [colleges, collegesRefetch] = useColleges();
   const handleRatingChange = (value) => {
     setRating(value);
   };
@@ -31,10 +33,14 @@ const ReviewForm = ({ college }) => {
 
     if (user && comment && rating) {
       axios
-        .post(`http://localhost:5000/college/review/${college._id}`, {
-          newReview,
-        })
+        .post(
+          `https://college-booker.vercel.app/college/review/${college._id}`,
+          {
+            newReview,
+          }
+        )
         .then((response) => {
+          collegesRefetch();
           Swal.fire({
             icon: "success",
             title: "Success",
@@ -53,7 +59,7 @@ const ReviewForm = ({ college }) => {
         });
     } else {
       Swal.fire({
-        title: "Please Login fast to review",
+        title: "Please write your comment to review",
         icon: "warning",
         confirmButtonText: "OK",
       });
@@ -72,6 +78,7 @@ const ReviewForm = ({ college }) => {
     }
     return stars;
   };
+
   return (
     <div>
       <form onSubmit={handleReviewSubmit}>
@@ -94,7 +101,7 @@ const ReviewForm = ({ college }) => {
         ></textarea>
         <button
           type="submit"
-          className="hover:bg-orange-500 bg-orange-600 text-white font-medium py-2 px-4 rounded mt-4"
+          className="hover:bg-blue-500 bg-blue-600 text-white font-medium py-2 px-4 rounded mt-4"
         >
           Submit Review
         </button>

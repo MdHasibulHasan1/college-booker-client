@@ -29,7 +29,7 @@ const AdmissionForm = ({ college }) => {
     // candidates
     if (user && data && college) {
       axios
-        .post(`http://localhost:5000/candidates/${college?._id}`, {
+        .post(`https://college-booker.vercel.app/candidates/${college?._id}`, {
           data,
         })
         .then((response) => {

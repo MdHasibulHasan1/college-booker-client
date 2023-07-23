@@ -19,7 +19,7 @@ const Navbar = () => {
       .catch((error) => console.error(error));
   };
   return (
-    <div className="bg-white px-4 mx-auto  fixed z-30 w-full">
+    <div className="bg-white px-4 mx-auto font-semibold  fixed z-30 w-full">
       <div className="relative py-2 flex items-center justify-between">
         <div className="grid grid-cols-2 justify-between items-center">
           <div>
@@ -35,7 +35,9 @@ const Navbar = () => {
                 aria-label="Home"
                 title="Home"
                 className={({ isActive }) =>
-                  isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                  isActive
+                    ? "text-[#3a85eb]  border-b-blue-500 border-b-2"
+                    : "text-[#666666]"
                 }
               >
                 Home
@@ -47,7 +49,9 @@ const Navbar = () => {
                 aria-label="Colleges"
                 title="Colleges"
                 className={({ isActive }) =>
-                  isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                  isActive
+                    ? "text-[#3a85eb] border-b-blue-500 border-b-2"
+                    : "text-[#666666]"
                 }
               >
                 Colleges
@@ -59,7 +63,9 @@ const Navbar = () => {
               aria-label="Admission"
               title="Admission"
               className={({ isActive }) =>
-                isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                isActive
+                  ? "text-[#3a85eb] border-b-blue-500 border-b-2"
+                  : "text-[#666666]"
               }
             >
               Admission
@@ -71,7 +77,9 @@ const Navbar = () => {
                   aria-label="My College"
                   title="My College"
                   className={({ isActive }) =>
-                    isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                    isActive
+                      ? "text-[#3a85eb] border-b-blue-500 border-b-2"
+                      : "text-[#666666]"
                   }
                 >
                   My College
@@ -85,7 +93,9 @@ const Navbar = () => {
                   aria-label="Login"
                   title="Login"
                   className={({ isActive }) =>
-                    isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                    isActive
+                      ? "text-[#3a85eb] border-b-blue-500 border-b-2"
+                      : "text-[#666666]"
                   }
                 >
                   Login
@@ -96,7 +106,9 @@ const Navbar = () => {
                   aria-label="Sign Up"
                   title="Sign Up"
                   className={({ isActive }) =>
-                    isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                    isActive
+                      ? "text-[#3a85eb] border-b-blue-500 border-b-2"
+                      : "text-[#666666]"
                   }
                 >
                   Sign Up
@@ -183,7 +195,9 @@ const Navbar = () => {
                         aria-label="Home"
                         title="Home"
                         className={({ isActive }) =>
-                          isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                          isActive
+                            ? "text-[#3a85eb] border-b-blue-500 border-b-2"
+                            : "text-[#666666]"
                         }
                       >
                         Home
@@ -195,7 +209,9 @@ const Navbar = () => {
                         aria-label="Colleges"
                         title="Colleges"
                         className={({ isActive }) =>
-                          isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                          isActive
+                            ? "text-[#3a85eb] border-b-blue-500 border-b-2"
+                            : "text-[#666666]"
                         }
                       >
                         Colleges
@@ -207,7 +223,9 @@ const Navbar = () => {
                       aria-label="Admission"
                       title="Admission"
                       className={({ isActive }) =>
-                        isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                        isActive
+                          ? "text-[#3a85eb] border-b-blue-500 border-b-2"
+                          : "text-[#666666]"
                       }
                     >
                       Admission
@@ -219,7 +237,9 @@ const Navbar = () => {
                           aria-label="My College"
                           title="My College"
                           className={({ isActive }) =>
-                            isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                            isActive
+                              ? "text-[#3a85eb] border-b-blue-500 border-b-2"
+                              : "text-[#666666]"
                           }
                         >
                           My College

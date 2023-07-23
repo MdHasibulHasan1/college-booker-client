@@ -30,7 +30,7 @@ const UserProfile = () => {
     console.log(userData);
     try {
       const response = await axios.post(
-        `http://localhost:5000/profile/update/${userData?._id}`,
+        `https://college-booker.vercel.app/profile/update/${userData?._id}`,
         {
           name,
           photoURL,
