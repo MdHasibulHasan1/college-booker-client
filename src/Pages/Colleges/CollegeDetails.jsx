@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useColleges from "../../hooks/useColleges";
-
+import StarsRating from "react-awesome-stars-rating";
 const CollegeDetails = () => {
   const { Id } = useParams();
   console.log(Id);
@@ -26,7 +26,27 @@ const CollegeDetails = () => {
             alt={college.name}
             className="w-full h-40 object-cover rounded-md"
           />
-          <p className="mt-2">Rating: {college.rating}</p>
+
+          <div className="flex items-center mb-2">
+            <span className="mr-2">Rating:</span>
+            <div className="-ml-2 flex">
+              <StarsRating
+                value={
+                  college?.reviews
+                    ?.map((review) => review?.rating)
+                    .reduce(
+                      (accumulator, currentValue) => accumulator + currentValue,
+                      0
+                    ) / Number(college?.reviews?.length)
+                }
+                size={20}
+                isHalf={true}
+                className="flex ml-1 pointer-events-none"
+              />
+            </div>
+
+            <span>({college?.reviews?.length})</span>
+          </div>
           <p className="mt-2">
             Admission Dates: {college.admissionDates.join(" - ")}
           </p>

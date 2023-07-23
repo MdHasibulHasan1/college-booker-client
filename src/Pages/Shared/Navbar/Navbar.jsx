@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 
@@ -63,18 +64,20 @@ const Navbar = () => {
             >
               Admission
             </NavLink>
-            <li>
-              <NavLink
-                to="/my-college"
-                aria-label="My College"
-                title="My College"
-                className={({ isActive }) =>
-                  isActive ? "text-[#3a85eb]" : "text-[#666666]"
-                }
-              >
-                My College
-              </NavLink>
-            </li>
+            {user && (
+              <li>
+                <NavLink
+                  to="/my-college"
+                  aria-label="My College"
+                  title="My College"
+                  className={({ isActive }) =>
+                    isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                  }
+                >
+                  My College
+                </NavLink>
+              </li>
+            )}
             <li>
               {user ? (
                 <NavLink
@@ -154,7 +157,7 @@ const Navbar = () => {
             )}
           </button>
           {isMenuOpen && (
-            <div className="absolute z-10 top-0 left-0 w-full">
+            <div className="absolute z-10 top-0 bg-white left-0 w-full">
               <div className="p-5 bg-primary-500 border rounded shadow-sm">
                 <div className="flex items-center justify-between mb-4 relative">
                   <button
@@ -209,18 +212,20 @@ const Navbar = () => {
                     >
                       Admission
                     </NavLink>
-                    <li>
-                      <NavLink
-                        to="/my-college"
-                        aria-label="My College"
-                        title="My College"
-                        className={({ isActive }) =>
-                          isActive ? "text-[#3a85eb]" : "text-[#666666]"
-                        }
-                      >
-                        My College
-                      </NavLink>
-                    </li>
+                    {user && (
+                      <li>
+                        <NavLink
+                          to="/my-college"
+                          aria-label="My College"
+                          title="My College"
+                          className={({ isActive }) =>
+                            isActive ? "text-[#3a85eb]" : "text-[#666666]"
+                          }
+                        >
+                          My College
+                        </NavLink>
+                      </li>
+                    )}
                   </ul>
                 </nav>
               </div>

@@ -31,6 +31,10 @@ const ErrorPage = () => {
           <h2 className="mb-4 font-extrabold text-9xl text-gray-600">
             <span className="sr-only">Error</span> {status || 404}
           </h2>
+          <p className="text-gray-600 mt-4">
+            Oops! The page you are looking for does not exist.
+          </p>
+
           <p className="text-2xl font-semibold md:text-3xl mb-4">
             {error?.message}
           </p>

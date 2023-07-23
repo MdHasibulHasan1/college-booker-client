@@ -23,17 +23,16 @@ const ShopBySearch = () => {
   return (
     <>
       <CollegeSearch />
-      <div className="md:flex justify-between items-center mt-4">
-        <h1 className="text-2xl font-bold">
+      <div className=" mt-4">
+        <h1 className="text-2xl font-bold text-center">
           {searchedColleges?.length} items found for "{searchQuery}"
         </h1>
       </div>
-      <div className="md:flex">
-        <div className="grid grid-cols-2 w-full justify-center sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
-          {searchedColleges?.map((college) => (
-            <CollegeCard key={college._id} college={college} />
-          ))}
-        </div>
+
+      <div className="grid sm:grid-cols-2 justify-between lg:grid-cols-3 gap-2 mt-4">
+        {searchedColleges?.map((college) => (
+          <CollegeCard key={college._id} college={college} />
+        ))}
       </div>
     </>
   );

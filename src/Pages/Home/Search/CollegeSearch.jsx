@@ -38,7 +38,7 @@ const CollegeSearch = () => {
     <div className="py-4">
       <form
         onSubmit={handleSubmit}
-        className="flex md:w-1/2 my-6 w-full mx-auto items-center"
+        className="flex md:w-1/2 px-3 my-6 w-full mx-auto items-center"
       >
         <input
           type="text"
@@ -59,22 +59,11 @@ const CollegeSearch = () => {
         </Link>
       </form>
 
-      {isLoading && searchQuery !== "" && (
+      {!isLoading && searchQuery !== "" && (
         <p className="my-4 text-center">Loading...</p>
       )}
 
       {isError && <p className="my-4 text-red-500">Error: {error.message}</p>}
-
-      {colleges && colleges.length > 0 && (
-        <div className="my-4">
-          <h2 className="text-xl font-semibold">Search Results:</h2>
-          <div className="mt-2">
-            {colleges.map((college) => (
-              <CollegeCard key={college._id} college={college} />
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 };

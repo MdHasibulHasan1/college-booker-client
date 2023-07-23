@@ -24,7 +24,8 @@ const Login = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const [isLoading, setIsLoading] = useState(false);
-  const [email, setEmail] = useState("hasib7143@gmail.com");
+  const [email, setEmail] = useState("");
+
   const onSubmit = (data) => {
     signIn(data.email, data.password)
       .then((result) => {
@@ -51,7 +52,7 @@ const Login = () => {
 
   const handleResetPassword = () => {
     console.log("emal", email);
-    if (!email) {
+    if (email == "") {
       return toast.success("Enter Your Email!");
     }
     sendPasswordResetEmail(auth, email)
@@ -70,14 +71,26 @@ const Login = () => {
           <label htmlFor="email" className="block font-medium">
             Email
           </label>
+          {/* <input
+              required
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="form-input p-2 mt-1 block w-full border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 hover:border-blue-500 hover:ring-blue-500"
+            /> */}
           <input
             type="email"
             id="email"
+            required
+            name="email"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="border border-gray-800 p-1 mt-1 block w-full"
-            {...register("email", { required: true })}
+            // {...register("email", { required: true })}
           />
-          {errors.email && <p className="text-red-500">Email is required</p>}
+          {/* {errors.email && <p className="text-red-500">Email is required</p>} */}
         </div>
         <div className="mb-4">
           <label htmlFor="password" className="block font-medium">
@@ -88,12 +101,12 @@ const Login = () => {
               type={showPassword ? "text" : "password"}
               id="password"
               className="border border-gray-800 p-1 mt-1 block w-full"
-              {...register("password", { required: true })}
+              // {...register("password", { required: true })}
             />
           </div>
-          {errors.password && (
+          {/* {errors.password && (
             <p className="text-red-500">Password is required</p>
-          )}
+          )} */}
         </div>
 
         <div className="mb-4 flex items-center justify-between">
@@ -110,13 +123,13 @@ const Login = () => {
             </label>
           </div>
           <label className="label">
-            <a
+            <div
               onClick={() => handleResetPassword()}
-              href="#"
+              // type="submit"
               className="label-text-alt link link-hover"
             >
               Forgot password?
-            </a>
+            </div>
           </label>
         </div>
 

@@ -4,17 +4,20 @@ import { useForm, Controller } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useColleges from "../../hooks/useColleges";
+import useMyColleges from "../../hooks/useMyColleges";
 const AdmissionForm = ({ college }) => {
+  const [colleges, collegesRefetch] = useColleges();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [myColleges, refetchMyColleges] = useMyColleges();
   const { user } = useAuth();
   const found = college?.candidate?.find(
     (cand) => cand.candidateEmail === user?.email
   );
-  console.log("............", found, college);
   const [phoneNumber, setPhoneNumber] = useState("");
   const handlePhoneChange = (value) => {
     setPhoneNumber(value);
@@ -30,13 +33,17 @@ const AdmissionForm = ({ college }) => {
           data,
         })
         .then((response) => {
-          console.log(response.data);
-          Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: "Your are now candidate of this college!",
-            confirmButtonText: "OK",
-          });
+          console.log(response);
+          if (response?.data) {
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Your are now candidate of this college!",
+              confirmButtonText: "OK",
+            });
+            collegesRefetch();
+            refetchMyColleges();
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -59,7 +66,7 @@ const AdmissionForm = ({ college }) => {
   return (
     <div className="p-4 z-40">
       <h1 className="text-2xl font-bold mb-4">Admission</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
+      <form onSubmit={handleSubmit(onSubmit)} className="  w-full ">
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="candidateName">Candidate Name:</label>

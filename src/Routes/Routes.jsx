@@ -3,18 +3,21 @@ import MainLayout from "../Layouts/MainLayout";
 import Admission from "../Pages/Admission/Admission";
 import CollegeDetails from "../Pages/Colleges/CollegeDetails";
 import Colleges from "../Pages/Colleges/Colleges";
-import Details from "../Pages/Home/CollegeCardSection/Details";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Details from "../Pages/Home/CollegesList/Details";
 import Home from "../Pages/Home/Home";
 import ShopBySearch from "../Pages/Home/Search/ShopBySearch";
 import Login from "../Pages/Login";
 import MyColleges from "../Pages/MyColleges/MyColleges";
 import SignUp from "../Pages/SignUp/SignUp";
 import UserProfile from "../Pages/UserProfile";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -34,11 +37,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/colleges/:Id",
-        element: <CollegeDetails />,
+        element: (
+          <PrivateRoute>
+            <CollegeDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/details/:Id",
-        element: <Details />,
+        element: (
+          <PrivateRoute>
+            <Details />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/admission",

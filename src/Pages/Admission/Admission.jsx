@@ -11,7 +11,7 @@ const Admission = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = (college) => {
-    setSelectedCollege(college); // Set the selected college before opening the modal
+    setSelectedCollege(college);
     setIsModalOpen(true);
   };
 
@@ -27,7 +27,7 @@ const Admission = () => {
           <div
             key={college._id}
             className="bg-white rounded-lg shadow p-4 cursor-pointer"
-            onClick={() => handleOpenModal(college)} // Pass the college to the handleOpenModal function
+            onClick={() => handleOpenModal(college)}
           >
             <button className="text-lg font-bold">{college.name}</button>
           </div>
@@ -35,11 +35,11 @@ const Admission = () => {
       </div>
 
       {/* Admission Modal */}
-      {selectedCollege && ( // Render the modal only if a college is selected
+      {selectedCollege && (
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          college={selectedCollege} // Pass the selected college as a prop to the Modal component
+          college={selectedCollege}
         />
       )}
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const CollegeCard = ({ college }) => {
   return (
-    <div className="border border-gray-300 shadow-md p-4 rounded-lg w-64 mx-4 my-4">
+    <div className="border border-gray-300 shadow-md p-4 rounded-lg mx-4 my-4">
       <img
         src={college.image}
         alt={college.name}

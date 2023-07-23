@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useColleges from "../../hooks/useColleges";
-
+import StarsRating from "react-awesome-stars-rating";
 const Colleges = () => {
   const [colleges, collegesRefetch] = useColleges();
   console.log(colleges);
@@ -17,9 +17,29 @@ const Colleges = () => {
               className="w-full h-32 object-cover rounded-md"
             />
             <h2 className="text-lg font-bold mt-2">{college.name}</h2>
-            <p className="text-gray-600">Rating: {college.rating}</p>
+            <div className="flex items-center mb-2">
+              <span className="mr-2">Rating:</span>
+              <div className="-ml-2 flex">
+                <StarsRating
+                  value={
+                    college?.reviews
+                      ?.map((review) => review?.rating)
+                      .reduce(
+                        (accumulator, currentValue) =>
+                          accumulator + currentValue,
+                        0
+                      ) / Number(college?.reviews?.length)
+                  }
+                  size={20}
+                  isHalf={true}
+                  className="flex ml-1 pointer-events-none"
+                />
+              </div>
+
+              <span>({college?.reviews?.length})</span>
+            </div>
             <p className="text-gray-600">
-              Admission Dates: {college.admissionDates.join(" - ")}
+              Admission Dates: {college.admissionDates?.join(" - ")}
             </p>
             <p className="text-gray-600">
               Research Count: {college.researchCount}

@@ -1,10 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import { Form } from "react-hook-form";
 import useColleges from "../../hooks/useColleges";
-import Login from "../Login";
-import CollegeCardSection from "./CollegeCardSection/CollegeCardSection";
+import CollegeGallerySection from "./CollegeGallerySection/CollegeGallerySection";
+import CollegeList from "./CollegesList/CollegesList";
 
 import AddedForm from "./Form";
+import ResearchPaperLinks from "./ResearchPaperLinks/ResearchPaperLinks";
 import ReviewSection from "./ReviewSection/ReviewSection";
 import CollegeSearch from "./Search/CollegeSearch";
 
@@ -13,14 +14,17 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>App Name | Home</title>
+        <title>CollegeBooker | Home</title>
       </Helmet>
       <CollegeSearch />
+      <CollegeList />
+      <CollegeGallerySection colleges={colleges} />
 
-      <CollegeCardSection colleges={colleges} />
+      <ResearchPaperLinks colleges={colleges} />
+
       <ReviewSection />
 
-      <AddedForm />
+      {/* <AddedForm /> */}
     </div>
   );
 };
