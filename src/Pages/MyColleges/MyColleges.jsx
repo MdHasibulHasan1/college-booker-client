@@ -90,7 +90,8 @@ const MyColleges = () => {
   }
   return (
     <div className="py-4 px-6">
-      <h2 className="text-2xl font-semibold mb-4">My Colleges</h2>
+      <SectionTitle title="My Colleges" />
+
       {content}
     </div>
   );
