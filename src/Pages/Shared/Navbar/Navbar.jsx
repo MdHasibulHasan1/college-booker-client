@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -15,6 +14,7 @@ const Navbar = () => {
     logOut()
       .then((result) => {
         toast.success("Logout successful!");
+        navigate("/");
       })
       .catch((error) => console.error(error));
   };
@@ -86,21 +86,9 @@ const Navbar = () => {
                 </NavLink>
               </li>
             )}
-            <li>
-              {user ? (
-                <NavLink
-                  to="/login"
-                  aria-label="Login"
-                  title="Login"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[#3a85eb] border-b-blue-500 border-b-2"
-                      : "text-[#666666]"
-                  }
-                >
-                  Login
-                </NavLink>
-              ) : (
+            {user && <li onClick={handleLogout}>LogOut</li>}
+            {!user && (
+              <li>
                 <NavLink
                   to="/signUp"
                   aria-label="Sign Up"
@@ -113,11 +101,27 @@ const Navbar = () => {
                 >
                   Sign Up
                 </NavLink>
-              )}
-            </li>
+              </li>
+            )}
           </ul>
         </div>
         {user && (
+          <div className="ml-auto">
+            <NavLink
+              to="/profile"
+              aria-label="Profile"
+              title="Profile"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#3a85eb] border-b-blue-500 border-b-2"
+                  : "text-[#666666]"
+              }
+            >
+              {user?.displayName}
+            </NavLink>
+          </div>
+        )}
+        {/*  {user && (
           <div className="dropdown dropdown-end ml-auto">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
@@ -143,7 +147,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-        )}
+        )} */}
         <div className="lg:hidden">
           <button
             aria-label="Open Menu"

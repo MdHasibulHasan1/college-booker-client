@@ -7,6 +7,7 @@ import useAuth from "../hooks/useAuth";
 import { AiOutlineLoading } from "react-icons/ai";
 import SectionTitle from "./Shared/SectionTitle";
 import useUserData from "../hooks/useUserData";
+import { Helmet } from "react-helmet-async";
 
 const UserProfile = () => {
   const [userData, refetchUser] = useUserData();
@@ -36,7 +37,7 @@ const UserProfile = () => {
           photoURL,
           phoneNumber,
           address,
-          email,
+
           gender,
           university,
         }
@@ -68,6 +69,9 @@ const UserProfile = () => {
 
   return (
     <div className="w-11/12 mx-auto mb-5">
+      <Helmet>
+        <title>CollegeBooker | Profile</title>
+      </Helmet>
       <div className="bg-white rounded shadow p-4">
         <div className="flex items-center mb-4">
           <img
@@ -184,7 +188,7 @@ const UserProfile = () => {
               id="email"
               name="email"
               readOnly
-              value={userData?.email}
+              value={user?.email}
               onChange={(e) => setEmail(e.target.value)}
               className="form-input p-2 mt-1 block w-full border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 hover:border-blue-500 hover:ring-blue-500"
             />

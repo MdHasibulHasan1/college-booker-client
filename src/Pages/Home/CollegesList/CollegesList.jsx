@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import SectionTitle from "../../Shared/SectionTitle";
 import CollegeCard from "./CollegeCard";
+import Reveal from "react-awesome-reveal";
 
 const CollegeList = () => {
   const [colleges, setColleges] = useState([]);
@@ -89,8 +90,17 @@ const CollegeList = () => {
     <div>
       <SectionTitle title="Just For You"></SectionTitle>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
-        {colleges.map((college) => (
-          <CollegeCard key={college._id} college={college} />
+        {colleges.map((college, index) => (
+          <Reveal
+            key={college._id}
+            cascade
+            damping={0.1}
+            direction="up"
+            duration={500}
+            delay={index * 100}
+          >
+            <CollegeCard college={college} />
+          </Reveal>
         ))}
       </div>
 

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Reveal from "react-awesome-reveal";
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import useColleges from "../../hooks/useColleges";
 import AdmissionForm from "./AdmissionForm";
@@ -21,16 +23,27 @@ const Admission = () => {
 
   return (
     <div className="p-4">
+      <Helmet>
+        <title>CollegeBooker | Admission</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-4">Admission</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {colleges.map((college) => (
-          <div
+        {colleges.map((college, index) => (
+          <Reveal
             key={college._id}
-            className="bg-white rounded-lg shadow p-4 cursor-pointer"
-            onClick={() => handleOpenModal(college)}
+            cascade
+            damping={0.1}
+            direction="up"
+            duration={500}
+            delay={index * 100}
           >
-            <button className="text-lg font-bold">{college.name}</button>
-          </div>
+            <div
+              className="bg-white rounded-lg shadow p-4 cursor-pointer"
+              onClick={() => handleOpenModal(college)}
+            >
+              <button className="text-lg font-bold">{college.name}</button>
+            </div>
+          </Reveal>
         ))}
       </div>
 

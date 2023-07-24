@@ -3,7 +3,7 @@ import StarsRating from "react-awesome-stars-rating";
 
 const CollegeCard = ({ college }) => {
   return (
-    <div className="border border-gray-300 p-4 rounded-md shadow-md bg-white">
+    <div className="border  transform transition duration-500 ease-in-out hover:scale-105 border-gray-300 p-4 rounded-md shadow-md bg-white">
       <div className="flex justify-center mb-4">
         <div className="relative mb-4 w-full">
           <img
@@ -11,7 +11,7 @@ const CollegeCard = ({ college }) => {
             alt={college.name}
             className="w-full h-32 object-cover rounded-t-md"
           />
-          <div className="absolute top-2 left-2 px-2 py-1  rounded-md">
+          <div className="absolute top-2 left-0 px-2 py-1  rounded-md">
             <span className="font-bold text-black bg-white p-2 rounded-md">
               {college.name}
             </span>

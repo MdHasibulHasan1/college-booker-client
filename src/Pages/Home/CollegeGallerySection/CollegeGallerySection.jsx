@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Reveal from "react-awesome-reveal";
 import SectionTitle from "../../Shared/SectionTitle";
 
 const CollegeGallerySection = ({ colleges }) => {
@@ -15,23 +16,32 @@ const CollegeGallerySection = ({ colleges }) => {
     <div className="mx-auto p-4">
       <SectionTitle title="College Image Gallery" />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {colleges.map((college) => (
-          <div
+        {colleges.map((college, index) => (
+          <Reveal
             key={college._id}
-            className={`bg-white rounded-lg shadow p-4 ${
-              selectedCollege === college ? "border border-blue-500" : ""
-            }`}
+            cascade
+            damping={0.1}
+            direction="up"
+            duration={500}
+            delay={index * 100}
           >
-            <div onClick={() => handleCollegeClick(college)} className="tabs">
-              <a
-                className={`tab tab-lifted cursor-pointer ${
-                  selectedCollege === college ? "active" : ""
-                }`}
-              >
-                {college.name}
-              </a>
+            <div
+              key={college._id}
+              className={`bg-white rounded-lg shadow p-4 ${
+                selectedCollege === college ? "border border-blue-500" : ""
+              }`}
+            >
+              <div onClick={() => handleCollegeClick(college)} className="tabs">
+                <a
+                  className={`tab tab-lifted cursor-pointer ${
+                    selectedCollege === college ? "active" : ""
+                  }`}
+                >
+                  {college.name}
+                </a>
+              </div>
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
 
@@ -42,13 +52,22 @@ const CollegeGallerySection = ({ colleges }) => {
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
             {selectedCollege.image_gallery.map((image, index) => (
-              <div key={index}>
-                <img
-                  src={image}
-                  alt={`${selectedCollege.name} Graduate ${index + 1}`}
-                  className="w-full h-40 object-cover rounded-lg mb-2"
-                />
-              </div>
+              <Reveal
+                key={index}
+                cascade
+                damping={0.1}
+                direction="up"
+                duration={500}
+                delay={index * 100}
+              >
+                <div>
+                  <img
+                    src={image}
+                    alt={`${selectedCollege.name} Graduate ${index + 1}`}
+                    className="w-full h-40 object-cover rounded-lg mb-2"
+                  />
+                </div>
+              </Reveal>
             ))}
           </div>
           <button

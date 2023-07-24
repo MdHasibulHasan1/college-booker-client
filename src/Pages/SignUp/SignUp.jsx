@@ -64,7 +64,7 @@ const SignUp = () => {
   const password = watch("password", "");
 
   return (
-    <div className="max-w-md mx-auto">
+    <div className="max-w-md mx-auto px-4">
       <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="md:grid grid-cols-2 gap-3">
